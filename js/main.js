@@ -47,4 +47,50 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.padding = '0'; // Reset to default height defined in CSS
         }
     });
+
+    // ============================================
+    // COLLECTIONS PAGE FILTER FUNCTIONALITY
+    // ============================================
+    const filterButtons = document.querySelectorAll('.pill-btn');
+    const collectionCards = document.querySelectorAll('.collection-display-card');
+
+    if (filterButtons.length > 0 && collectionCards.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+
+                // Update active button state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter collection cards
+                collectionCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        // Show card with fade-in animation
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        // Hide card with fade-out animation
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initialize card styles for smooth transitions
+        collectionCards.forEach(card => {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        });
+    }
 });

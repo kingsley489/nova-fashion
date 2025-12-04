@@ -625,3 +625,299 @@ img {
         font-size: 1.4rem;
     }
 }
+
+
+
+
+/* Events */
+
+/* --- HERO HEADER  --- */
+.events-hero-header {
+    height: 60vh;
+    /* Adjust height as needed */
+    position: relative;
+    /* Placeholder Background Image for the whole top section */
+    background-image: url('images/event1.jpg');
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent overlay */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.events-hero-header h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.events-hero-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.hero-divider .line {
+    width: 100px;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.hero-divider .circle-icon {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--text-muted);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+
+/* --- MAIN CONTENT LAYOUT --- */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* --- CARD STYLES (General) --- */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+.card-image-wrapper {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-details {
+    padding: 30px;
+}
+
+.card-details h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.meta-info {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.meta-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.meta-info i {
+    width: 20px;
+    color: var(--text-muted);
+}
+
+.description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.description.small {
+    font-size: 0.8rem;
+}
+
+/* RSVP Button Style (Matches the gray gradient pill shape) */
+.btn-rsvp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    /* Gradient to simulate the pill button in the screenshot */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 25px;
+    transition: background 0.3s;
+}
+
+.btn-rsvp:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* --- FEATURED EVENT (Horizontal) --- */
+.featured-event-container {
+    padding: 0 20px;
+}
+
+.card.horizontal {
+    display: flex;
+    min-height: 350px;
+}
+
+.card.horizontal .card-image-wrapper {
+    width: 45%;
+    /* Apply border radius to the image wrapper only for the card style */
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.card.horizontal .card-details {
+    width: 55%;
+}
+
+/* --- EVENTS GRID (Vertical Cards) --- */
+.events-grid-container {
+    padding: 0 20px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.card.vertical .card-image-wrapper {
+    height: 300px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.card.vertical .card-image {
+    width: 100%;
+}
+
+/* --- NEWSLETTER SECTION --- */
+.newsletter-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.newsletter-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form-wrapper h3 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.newsletter-form p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: var(--radius-pill);
+    color: #fff;
+    width: 300px;
+    font-family: var(--font-primary);
+    outline: none;
+}
+
+.newsletter-form button {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+    color: var(--accent-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 30px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 500;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .events-hero-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .card.horizontal {
+        flex-direction: column;
+    }
+
+    .card.horizontal .card-image-wrapper {
+        width: 100%;
+        height: 250px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .card.horizontal .card-details {
+        width: 100%;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        /* Stack vertical grid cards */
+        gap: 20px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
