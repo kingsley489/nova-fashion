@@ -1,56 +1,111 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle
+    // ========================================
+    // MOBILE MENU TOGGLE
+    // ========================================
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navList = document.querySelector('.nav-list');
+    const desktopNav = document.querySelector('.desktop-nav');
     const header = document.querySelector('.site-header');
 
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && desktopNav) {
         mobileMenuBtn.addEventListener('click', () => {
-            navList.classList.toggle('active');
+            // Toggle active class on both button and nav
             mobileMenuBtn.classList.toggle('active');
+            desktopNav.classList.toggle('active');
 
-            // Animate hamburger to X
-            const spans = mobileMenuBtn.querySelectorAll('span');
-            if (mobileMenuBtn.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = desktopNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                desktopNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!desktopNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                if (desktopNav.classList.contains('active')) {
+                    mobileMenuBtn.classList.remove('active');
+                    desktopNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             }
         });
     }
 
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-list a').forEach(link => {
-        link.addEventListener('click', () => {
-            navList.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
+    // ========================================
+    // COMING SOON OVERLAY FOR SEARCH & CART
+    // ========================================
+    const searchIcon = document.querySelector('.search-icon');
+    const cartIcon = document.querySelector('.cart-icon');
 
-            // Reset hamburger
-            const spans = mobileMenuBtn.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
+    function showComingSoonOverlay() {
+        // Create overlay if it doesn't exist
+        let overlay = document.querySelector('.coming-soon-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'coming-soon-overlay';
+            overlay.innerHTML = `
+                <div class="coming-soon-content">
+                    <h2>Coming Soon</h2>
+                    <p>This feature is currently under development</p>
+                    <button class="close-overlay-btn">Close</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-            header.style.padding = '10px 0';
-        } else {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-            header.style.padding = '0'; // Reset to default height defined in CSS
+            // Close overlay when clicking the close button or outside
+            overlay.addEventListener('click', (e) => {
+                if (e.target.classList.contains('coming-soon-overlay') ||
+                    e.target.classList.contains('close-overlay-btn')) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
         }
-    });
 
-    // ============================================
+        // Show overlay
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Add click listeners to search and cart icons
+    if (searchIcon) {
+        searchIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            showComingSoonOverlay();
+        });
+    }
+
+    if (cartIcon) {
+        cartIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            showComingSoonOverlay();
+        });
+    }
+
+    // ========================================
+    // HEADER SCROLL EFFECT
+    // ========================================
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                header.style.padding = '0'; // Reset to default height defined in CSS
+            }
+        });
+    }
+
+    // ========================================
     // COLLECTIONS PAGE FILTER FUNCTIONALITY
-    // ============================================
+    // ========================================
     const filterButtons = document.querySelectorAll('.pill-btn');
     const collectionCards = document.querySelectorAll('.collection-display-card');
 

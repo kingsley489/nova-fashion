@@ -289,13 +289,9 @@ img {
 
 /* Responsiveness */
 @media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
 
-    .mobile-menu-btn {
-        display: flex;
-    }
+
+
 
     .hero-title {
         font-size: 3rem;
@@ -310,28 +306,7 @@ img {
         width: 45%;
     }
 
-    .nav-list {
-        position: fixed;
-        top: var(--header-height);
-        left: 0;
-        width: 100%;
-        height: calc(100vh - var(--header-height));
-        background-color: #000;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-    }
 
-    .nav-list.active {
-        transform: translateX(0);
-    }
-
-    .nav-list a {
-        font-size: 1.5rem;
-    }
 }
 
 /* Featured Collections */

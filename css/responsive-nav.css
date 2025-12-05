@@ -1,0 +1,104 @@
+/* =====================================================
+   MOBILE NAVIGATION STYLES
+   ===================================================== */
+
+/* Mobile Menu Button - Hidden by default, shown on mobile */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Mobile-only styles */
+@media (max-width: 768px) {
+
+    /* Show mobile menu button */
+    .mobile-menu-btn {
+        display: flex !important;
+    }
+
+    /* Hide desktop nav on mobile */
+    .desktop-nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(10px);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    /* Show menu when active */
+    .desktop-nav.active {
+        left: 0;
+    }
+
+    /* Stack nav vertically */
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+        padding: 40px 0;
+        margin: 0;
+        height: auto;
+    }
+
+    .nav-list li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-list a {
+        display: block;
+        padding: 20px 30px;
+        font-size: 1.1rem;
+        color: var(--text-color) !important;
+    }
+
+    .nav-list a:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Mobile hero adjustments */
+    .hero-title,
+    .collections-hero h1,
+    .about-hero h1,
+    .board-hero h1,
+    .contact-hero h1,
+    .events-hero-header h1 {
+        font-size: 2.5rem !important;
+    }
+
+    /* Container padding */
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* Hamburger animation to X */
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
